@@ -1,13 +1,14 @@
 package event
 
 import (
+	"crypto"
 	"crypto/hmac"
-	"crypto/sha256"
+
 	"encoding/hex"
 	"fmt"
 	"net"
 
-	"github.com/denisbrodbeck/machineid"
+	"github.com/robotmaxtron/machineid"
 )
 
 var distinctId string
@@ -43,7 +44,7 @@ func getMacAddr() (string, error) {
 }
 
 func hashString(str string) string {
-	hash := hmac.New(sha256.New, []byte(str))
+	hash := hmac.New(crypto.BLAKE2b_512.New, []byte(str))
 	hash.Write([]byte(hashKey))
 	return hex.EncodeToString(hash.Sum(nil))
 }
