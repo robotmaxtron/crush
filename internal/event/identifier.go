@@ -9,6 +9,7 @@ import (
 	"net"
 
 	"github.com/robotmaxtron/machineid"
+	_ "golang.org/x/crypto/blake2b"
 )
 
 var distinctId string
